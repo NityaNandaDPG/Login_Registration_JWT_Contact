@@ -1,0 +1,28 @@
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: system
+      POSTGRES_DB: nitya
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+  nestjs:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USERNAME: postgres
+      DB_PASSWORD: system
+      DB_DATABASE: nitya
+      DB_SYNC: true
+      MAILGUN_API_KEY: 8b6c76ac5b49852aa5867f6d56b78d60-623e10c8-127d4e38
+    depends_on:
+      - postgres
+
+volumes:
+  postgres-data:
