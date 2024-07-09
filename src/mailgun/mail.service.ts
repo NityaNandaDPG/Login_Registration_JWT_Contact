@@ -18,9 +18,11 @@ export class MailService {
       key: this.configService.get<string>('MAILGUN_API_KEY'),
     });
 
+    const domain_key=this.configService.get<string>('MAILGUN_DOMAIN_KEY')
+
     try {
-      const msg = await mg.messages.create('sandboxa31b185d35754a89aaea47215ca85a2e.mailgun.org', {
-        from: 'Nityananda Toshiba C50 <mailgun@sandboxa31b185d35754a89aaea47215ca85a2e.mailgun.org>',
+      const msg = await mg.messages.create(domain_key, {
+        from: `Nityananda Toshiba C50 <mailgun@${domain_key}>`,
         to:["nnadkbdhupguri@gmail.com"],
         subject:"Hello NityaNanda",
         text:"Testing Mailgun usin NestJS!",
