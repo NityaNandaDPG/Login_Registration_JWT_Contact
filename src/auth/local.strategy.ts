@@ -13,11 +13,10 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     super(); 
   }
 
-
   async validate(username: string, password: string): Promise<User> {
     const user = await this.fetchUser(username);
 
-    if (user && bcrypt.compare(password, user.password)) {
+    if (user && await bcrypt.compare(password, user.password)) {
       return { ...user };
     } else {
       throw new UnauthorizedException('Invalid username or password');
@@ -30,4 +29,4 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     }
     return user;
   }
-}  
+}

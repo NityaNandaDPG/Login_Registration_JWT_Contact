@@ -9,7 +9,8 @@ import { ConfigService } from '@nestjs/config';
 export class MailService {
   private mailgun=mailgun
 
-  constructor(private readonly configService: ConfigService) {
+  constructor(private readonly configService: ConfigService,
+  ) {
   }
 
   async sendVerificationEmail(email: string,token:string) {
@@ -37,7 +38,7 @@ export class MailService {
         </div>
     `
       });
-      console.log('Message sent:', msg);
+      console.log('Verification email sent:', msg);
       return msg;
     } catch (error) {
       console.error('Error sending email:', error);

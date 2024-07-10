@@ -1,6 +1,6 @@
 export class ContactEntity {}
 import { User } from 'src/user/user.entity';
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 
 @Entity()
 export class Contact {
@@ -19,6 +19,10 @@ export class Contact {
   @Column()
   address: string;
 
-  @ManyToOne(() => User, user => user.contacts)
+  @ManyToOne(() => User, user => user.contacts,{onDelete:'CASCADE'})
+  @JoinColumn({ name: 'userId' })
   user: User;
+
+  @Column()
+  userId: number;
 }

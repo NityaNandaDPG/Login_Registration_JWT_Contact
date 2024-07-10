@@ -25,7 +25,7 @@ import { ContactModule } from './contact/contact.module';
         entities: [__dirname+'/**/*.entity{.ts,.js}'],
         synchronize: configService.get<boolean>('DB_SYNC'),
         logging:false
-      }),  
+      }),
       inject: [ConfigService],
     }),
     UserModule,ContactModule,AuthModule],
@@ -33,4 +33,3 @@ import { ContactModule } from './contact/contact.module';
   providers: [AppService],
 })
 export class AppModule {}  
-  

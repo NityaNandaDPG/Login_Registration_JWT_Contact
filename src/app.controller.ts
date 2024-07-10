@@ -12,9 +12,4 @@ export class AppController {
     return this.authService.generateToken(req.user)
   }
 
-  @Get("/android")
-  @UseGuards(AuthGuard("jwt"))
-  androidDev():string{
-    return "android developer"
-  }
 }
